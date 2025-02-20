@@ -1196,9 +1196,6 @@ on boot
     write /dev/sys/fs/by-name/userdata/gc_urgent_sleep_time 200
     write /dev/sys/fs/by-name/userdata/iostat_period_ms 1000
     write /dev/sys/fs/by-name/userdata/iostat_enable 0
-    write /proc/sys/vm/dirty_expire_centisecs 3000
-    write /proc/sys/vm/dirty_background_ratio 20
-    write /proc/sys/vm/dirty_ratio 50
 
     # set readahead multiplier for POSIX_FADV_SEQUENTIAL files
     write /dev/sys/fs/by-name/userdata/seq_file_ra_mul 128
@@ -1393,6 +1390,46 @@ on boot
     write /proc/sys/vm/page_lock_unfairness 1
     write /sys/kernel/mm/transparent_hugepage/enabled "madvise"
     write /sys/kernel/mm/transparent_hugepage/khugepaged/defrag 0
+    write /sys/block/sda/queue/read_ahead_kb 64
+    write /proc/sys/vm/vfs_cache_pressure 50
+    write /proc/sys/vm/dirty_expire_centisecs 3000
+    write /proc/sys/vm/dirty_background_ratio 20
+    write /proc/sys/vm/dirty_ratio 50
+    write /proc/sys/kernel/sched_autogroup_enabled 0
+    
+on property:persist.sys.power_mode_perf=1
+    write /proc/sys/kernel/sched_tunable_scaling 0
+    write /proc/sys/kernel/sched_latency_ns 3000000
+    write /proc/sys/kernel/sched_wakeup_granularity_ns 500000
+    write /proc/sys/kernel/sched_child_runs_first 0
+    write /proc/sys/kernel/sched_min_granularity_ns 300000
+    write /proc/sys/kernel/sched_nr_migrate 128
+    write /proc/sys/kernel/sched_migration_cost_ns 50000
+    write /proc/sys/kernel/sched_rt_runtime_us 980000
+    write /sys/block/sda/queue/nr_requests 512
+    write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/down_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/sched_pixel/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/sched_pixel/down_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu6/cpufreq/sched_pixel/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu6/cpufreq/sched_pixel/down_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/up_rate_limit_us 0
+    write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/down_rate_limit_us 0
+    
+on property:persist.sys.power_mode_perf=0
+    write /proc/sys/kernel/sched_tunable_scaling 1
+    write /proc/sys/kernel/sched_latency_ns 20000000
+    write /proc/sys/kernel/sched_wakeup_granularity_ns 2000000
+    write /proc/sys/kernel/sched_child_runs_first 1
+    write /proc/sys/kernel/sched_min_granularity_ns 1000000
+    write /proc/sys/kernel/sched_nr_migrate 8
+    write /proc/sys/kernel/sched_migration_cost_ns 5000000
+    write /proc/sys/kernel/sched_rt_runtime_us 950000
+    write /sys/block/sda/queue/nr_requests 64
     write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/up_rate_limit_us 2000
     write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/down_rate_limit_us 2000
     write /sys/devices/system/cpu/cpu4/cpufreq/sched_pixel/up_rate_limit_us 2000
@@ -1405,5 +1442,3 @@ on boot
     write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 2000
     write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/up_rate_limit_us 2000
     write /sys/devices/system/cpu/cpu6/cpufreq/schedutil/down_rate_limit_us 2000
-    write /sys/block/sda/queue/read_ahead_kb 64
-    write /proc/sys/vm/vfs_cache_pressure 50
