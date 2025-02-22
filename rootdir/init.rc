@@ -1465,7 +1465,7 @@ on property:persist.sys.power_mode_limit_cpus=1
   write /dev/cpuset/foreground_window/cpus 0-1
   write /dev/cpuset/restricted/cpus 0-1
   write /dev/cpuset/background/cpus 0-1
-  write /dev/cpuset/system-background 0-1
+  write /dev/cpuset/system-background/cpus 0-1
 
 on property:persist.sys.power_mode_limit_cpus=0
   write /dev/cpuset/top-app/cpus 0-7
@@ -1474,5 +1474,5 @@ on property:persist.sys.power_mode_limit_cpus=0
   write /dev/cpuset/foreground/cpus 0-5
   write /dev/cpuset/foreground_window/cpus 0-5
   write /dev/cpuset/restricted/cpus 0-3
-  write /dev/cpuset/system-background 0-3
+  write /dev/cpuset/system-background/cpus 0-3
   write /dev/cpuset/background/cpus 0-3
