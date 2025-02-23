@@ -1476,3 +1476,9 @@ on property:persist.sys.power_mode_limit_cpus=0
   write /dev/cpuset/restricted/cpus 0-3
   write /dev/cpuset/system-background/cpus 0-3
   write /dev/cpuset/background/cpus 0-3
+  
+on property:persist.sys.battery_health_limit_charge=true
+  write /sys/devices/platform/google,charger/charge_stop_level 80
+  
+on property:persist.sys.battery_health_limit_charge=false
+  write /sys/devices/platform/google,charger/charge_stop_level 100
