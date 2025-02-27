@@ -1397,6 +1397,8 @@ on boot
     write /proc/sys/vm/page_lock_unfairness 1
     write /sys/kernel/mm/transparent_hugepage/enabled "madvise"
     write /sys/kernel/mm/transparent_hugepage/khugepaged/defrag 0
+    write /sys/kernel/mm/transparent_hugepage/shmem_enabled "advise"
+    write /sys/kernel/mm/transparent_hugepage/defrag "never"
     write /sys/block/sda/queue/read_ahead_kb 64
     write /proc/sys/vm/dirty_expire_centisecs 3000
     write /proc/sys/vm/dirty_writeback_centisecs 3000
@@ -1415,7 +1417,7 @@ on property:persist.sys.power_mode_perf=1
     write /proc/sys/kernel/sched_autogroup_enabled 0
     write /proc/sys/vm/dirty_background_ratio 20
     write /proc/sys/vm/dirty_ratio 50
-    write /proc/sys/vm/swappiness 60
+    write /proc/sys/vm/swappiness 10
     write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/up_rate_limit_us 0
     write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/down_rate_limit_us 0
     write /sys/devices/system/cpu/cpu4/cpufreq/sched_pixel/up_rate_limit_us 0
@@ -1443,7 +1445,7 @@ on property:persist.sys.power_mode_perf=0
     write /proc/sys/vm/vfs_cache_pressure 200
     write /proc/sys/vm/dirty_background_ratio 3
     write /proc/sys/vm/dirty_ratio 30
-    write /proc/sys/vm/swappiness 100
+    write /proc/sys/vm/swappiness 60
     write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/up_rate_limit_us 2000
     write /sys/devices/system/cpu/cpu0/cpufreq/sched_pixel/down_rate_limit_us 2000
     write /sys/devices/system/cpu/cpu4/cpufreq/sched_pixel/up_rate_limit_us 2000
